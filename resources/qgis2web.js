@@ -7,12 +7,12 @@ var map = new ol.Map({
         constrainResolution: false,
         maxZoom: 28,
         minZoom: 1,
-        
+        extent: [-5879723.019127, -3853367.422486, -5684643.784984, -3686960.402212],
     })
 });
 
 //initial view - epsg:3857 coordinates if not "Match project CRS"
-map.getView().fit([-5878256.738341, -3851994.292668, -5686518.838624, -3688436.872279], map.getSize());
+map.getView().fit([-5879723.019127, -3853367.422486, -5684643.784984, -3686960.402212], map.getSize());
 
 //change cursor
 function pointerOnFeature(evt) {
@@ -497,17 +497,6 @@ var bottomRightContainerDiv = document.getElementById('bottom-right-container')
 
 //title
 
-var Title = new ol.control.Control({
-    element: (() => {
-        var titleElement = document.createElement('div');
-        titleElement.className = 'top-left-title ol-control';
-        titleElement.innerHTML = '<h2 class="project-title">WebSIG: Mapeamento das Áreas Diretamente Atingidas pelas Enchentes de 2024 nos Municípios de Rio Grande e São José do Norte/RS</h2>';
-        return titleElement;
-    })(),
-    target: 'top-left-container'
-});
-map.addControl(Title)
-    
 //abstract
 
 
@@ -533,22 +522,11 @@ map.addControl(Title)
 //layerswitcher
 
 var layerSwitcher = new ol.control.LayerSwitcher({
-    activationMode: 'click',
-	startActive: true,
-	tipLabel: "Layers",
-    target: 'top-right-container',
-	collapseLabel: '»',
-	collapseTipLabel: 'Close'
-    });
+    tipLabel: "Layers",
+    target: 'top-right-container'
+});
 map.addControl(layerSwitcher);
-if (hasTouchScreen || isSmallScreen) {
-	document.addEventListener('DOMContentLoaded', function() {
-		setTimeout(function() {
-			layerSwitcher.hidePanel();
-		}, 500);
-	});	
-}
-
+    
 
 
 
