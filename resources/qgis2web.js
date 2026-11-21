@@ -12,7 +12,7 @@ var map = new ol.Map({
 });
 
 //initial view - epsg:3857 coordinates if not "Match project CRS"
-map.getView().fit([-5960918.826942, -3961835.206586, -5573921.515641, -3628316.531884], map.getSize());
+map.getView().fit([-5878256.738341, -3851994.292668, -5686518.838624, -3688436.872279], map.getSize());
 
 //change cursor
 function pointerOnFeature(evt) {
@@ -148,7 +148,7 @@ var featureOverlay = new ol.layer.Vector({
 });
 
 var doHighlight = false;
-var doHover = false;
+var doHover = true;
 
 function createPopupField(currentFeature, currentFeatureKeys, layer) {
     var popupText = '';
@@ -497,6 +497,17 @@ var bottomRightContainerDiv = document.getElementById('bottom-right-container')
 
 //title
 
+var Title = new ol.control.Control({
+    element: (() => {
+        var titleElement = document.createElement('div');
+        titleElement.className = 'top-left-title ol-control';
+        titleElement.innerHTML = '<h2 class="project-title">WebSIG: Mapeamento das Áreas Diretamente Atingidas pelas Enchentes de 2024 nos Municípios de Rio Grande e São José do Norte/RS</h2>';
+        return titleElement;
+    })(),
+    target: 'top-left-container'
+});
+map.addControl(Title)
+    
 //abstract
 
 
